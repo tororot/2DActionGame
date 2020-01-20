@@ -1,21 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Title : MonoBehaviour
-{
-     private bool firstPush = false;
+public class Title : MonoBehaviour {
 
-     public void PressStart()
-     {
-          Debug.Log("Press Start!");
-          if (!firstPush)
-          {
-              Debug.Log("Go Next Scene!");
-              //ここに次のシーンへいく命令を書く
+    public FadeImage fade;
 
-              //
-              firstPush = true;
-          }
-     }
+    private bool firstPush = false;
+
+    void Update () {
+        if (fade.compFadeOut) {
+            SceneManager.LoadScene ("stage1");
+        }
+    }
+
+    public void PressStart () {
+        if (!firstPush) {
+            if (fade != null) {
+                fade.StartFadeOut ();
+                firstPush = true;
+            }
+        }
+    }
 }

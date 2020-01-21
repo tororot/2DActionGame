@@ -13,6 +13,8 @@ public class GManager : MonoBehaviour {
     public bool isGameOver = false;
     public int defaultHeartNum = 3;
 
+    private AudioSource audioSource = null;
+
     private void Awake () {
         if (instance == null) {
             instance = this;
@@ -20,6 +22,10 @@ public class GManager : MonoBehaviour {
         } else {
             Destroy (this.gameObject);
         }
+    }
+    
+    private void Start () {
+        audioSource = GetComponent<AudioSource> ();
     }
 
     // 残機を１つ増やす
@@ -45,5 +51,14 @@ public class GManager : MonoBehaviour {
         score = 0;
         stageNum = 1;
         continueNum = 0;
+    }
+
+    // SEを鳴らす
+    public void PlaySE (AudioClip clip) {
+        if (audioSource != null) {
+            audioSource.PlayOneShot (clip);
+        } else {
+            Debug.Log ("オーディオソースが設定されていません");
+        }
     }
 }

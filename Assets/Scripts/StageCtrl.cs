@@ -9,6 +9,7 @@ public class StageCtrl : MonoBehaviour {
     [Header ("コンティニュー位置")] public GameObject[] continuePoint;
     [Header ("ゲームオーバー")] public GameObject GameOverObj;
     [Header ("フェード")] public FadeImage fade;
+    [Header ("ゲームオーバー時に鳴らすSE")] public AudioClip gameOverSE;
 
     private Player p;
     private int nextStageNum;
@@ -36,6 +37,7 @@ public class StageCtrl : MonoBehaviour {
         // ゲームオーバー
         if (GManager.instance.isGameOver && !doGameOver) {
             GameOverObj.SetActive (true);
+            GManager.instance.PlaySE (gameOverSE);
             doGameOver = true;
         }
 

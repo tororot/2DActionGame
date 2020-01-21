@@ -806,6 +806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fade: {fileID: 1142627392}
+  startSE: {fileID: 8300000, guid: 699a21ca60012784c9805c6473120785, type: 3}
 --- !u!1 &1896144899
 GameObject:
   m_ObjectHideFlags: 0

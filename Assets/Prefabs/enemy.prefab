@@ -217,6 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boundHeight: 5
   playerStepOn: 0
+  itemSE: {fileID: 0}
 --- !u!114 &5168981689997407730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +235,7 @@ MonoBehaviour:
   nonVisibleAct: 0
   checkCollision: {fileID: 5168981688973455917}
   point: 20
+  deadSE: {fileID: 8300000, guid: 01fd566401477da4d81a42c8f31b507e, type: 3}
 --- !u!95 &5168981689997407733
 Animator:
   serializedVersion: 3

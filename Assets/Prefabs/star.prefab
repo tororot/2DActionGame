@@ -120,3 +120,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   point: 10
+  itemSE: {fileID: 8300000, guid: 7f9403ad262715f4994f66bc8d445f42, type: 3}

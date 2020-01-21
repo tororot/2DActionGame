@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScoreItem : MonoBehaviour {
 
     [Header ("加算スコア")] public int point;
+    [Header ("アイテム取得時に鳴らすSE")] public AudioClip itemSE;
 
     private string playerTag = "Player";
 
@@ -12,6 +13,7 @@ public class ScoreItem : MonoBehaviour {
         if (collision.tag == playerTag) {
             if (GManager.instance != null) {
                 GManager.instance.score += point;
+                GManager.instance.PlaySE (itemSE);
                 Destroy (this.gameObject);
             }
         }

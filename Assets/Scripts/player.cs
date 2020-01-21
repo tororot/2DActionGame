@@ -14,6 +14,9 @@ public class Player : MonoBehaviour {
     [Header ("ダッシュの速さ表現")] public AnimationCurve dashCurve;
     [Header ("ジャンプの速さ表現")] public AnimationCurve jumpCurve;
     [Header ("踏みつけ判定の高さの割合(%)")] public float stepOnRate;
+    [Header ("ジャンプする時に鳴らすSE")] public AudioClip jumpSE;
+    [Header ("やられた鳴らすSE")] public AudioClip downSE;
+    [Header ("コンティニュー時に鳴らすSE")] public AudioClip continueSE;
 
     // プライベート変数
     private Animator anim = null;
@@ -71,8 +74,8 @@ public class Player : MonoBehaviour {
     }
     // Update is called once per frame
     void FixedUpdate () {
-        if (!isDown && !GManager.instance.isGameOver){
-              // 接地判定を得る
+        if (!isDown && !GManager.instance.isGameOver) {
+            // 接地判定を得る
             isGround = ground.IsGround ();
 
             //各種座標軸の速度を求める
@@ -138,6 +141,7 @@ public class Player : MonoBehaviour {
                 jumpPos = transform.position.y; //ジャンプした位置を記録する
                 isJump = true;
                 jumpTime = 0.0f;
+                GManager.instance.PlaySE (jumpSE);
             } else {
                 isJump = false;
             }
@@ -149,6 +153,7 @@ public class Player : MonoBehaviour {
                 jumpTime < jumpLimitTime && !head.IsGround ()) {
                 ySpeed = jumpSpeed;
                 jumpTime += Time.deltaTime;
+                GManager.instance.PlaySE (jumpSE);
             } else {
                 isOtherJump = false;
                 jumpTime = 0.0f;
@@ -210,7 +215,8 @@ public class Player : MonoBehaviour {
                 } else {
                     anim.Play ("player_lose");
                     isDown = true;
-                    GManager.instance.SubHeartNum (); //New!
+                    GManager.instance.SubHeartNum ();
+                    GManager.instance.PlaySE (downSE);
                     break;
                 }
             }
@@ -238,7 +244,7 @@ public class Player : MonoBehaviour {
         isOtherJump = false;
         isRun = false;
         isContinue = true;
+        GManager.instance.PlaySE (continueSE);
     }
-
 
 }

@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour {
 
-    public FadeImage fade;
+    [Header ("フェード")] public FadeImage fade;
+    [Header ("ゲームスタート時に鳴らすSE")] public AudioClip startSE;
 
     private bool firstPush = false;
 
@@ -18,6 +19,7 @@ public class Title : MonoBehaviour {
     public void PressStart () {
         if (!firstPush) {
             if (fade != null) {
+                GManager.instance.PlaySE (startSE);
                 fade.StartFadeOut ();
                 firstPush = true;
             }

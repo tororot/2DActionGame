@@ -9,6 +9,7 @@ public class Enemy_Zako1 : MonoBehaviour {
     [Header ("画面外でも行動する")] public bool nonVisibleAct;
     [Header ("接触判定")] public EnemyCollisionCheck checkCollision;
     [Header ("加算スコア")] public int point;
+    [Header ("やられた時に鳴らすSE")] public AudioClip deadSE;
 
     //プライベート変数
     private Rigidbody2D rb = null;
@@ -54,6 +55,7 @@ public class Enemy_Zako1 : MonoBehaviour {
                 col.enabled = false;
                 if (GManager.instance != null) {
                     GManager.instance.score += point;
+                    GManager.instance.PlaySE (deadSE);
                 }
             }
         }
